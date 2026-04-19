@@ -1,0 +1,1095 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Sonufive LLC — Neighborhood Spirits. Two Stores. One Family.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>
+  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "accent": "#c9a24a",
+    "crimson": "#a8302b",
+    "bgShade": "#15100d",
+    "showAgeGate": true,
+    "displayFont": "Cormorant Garamond"
+  }/*EDITMODE-END*/;
+</script>
+<style>
+  :root {
+    --bg: #15100d; --bg-2: #1d1612; --bg-3: #2a201a;
+    --paper: #f4ead8; --paper-dim: #d9cdb5; --ink: #0c0806;
+    --accent: #c9a24a; --accent-deep: #8a6a25;
+    --crimson: #a8302b; --crimson-deep: #6e1f1c;
+    --line: rgba(244,234,216,0.12); --line-strong: rgba(244,234,216,0.22);
+    --display: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Inter', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--paper); font-family: var(--sans);
+    font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  img { display: block; max-width: 100%; }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+  @media (max-width: 640px) { .wrap { padding: 0 20px; } }
+
+  header.site { position: sticky; top: 0; z-index: 40;
+    background: rgba(21,16,13,0.82); backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line); }
+  header.site .bar { display: flex; align-items: center; justify-content: space-between; height: 76px; }
+  .brand { display: flex; align-items: center; gap: 14px; text-decoration: none; color: var(--paper); }
+  .brand-mark { width: 42px; height: 42px; border-radius: 50%;
+    background: var(--bg-3); border: 1.5px solid var(--accent);
+    display: grid; place-items: center;
+    font-family: var(--display); font-weight: 600; font-size: 20px;
+    color: var(--accent); letter-spacing: 0.02em; }
+  .brand-name { font-family: var(--display); font-weight: 600;
+    font-size: 22px; letter-spacing: 0.06em; text-transform: uppercase; line-height: 1; }
+  .brand-sub { display: block; font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.24em; color: var(--paper-dim); text-transform: uppercase; margin-top: 4px; }
+  nav.primary { display: flex; gap: 34px; align-items: center; }
+  nav.primary a { text-decoration: none; color: var(--paper-dim);
+    font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase;
+    font-weight: 500; padding: 6px 0; border-bottom: 1px solid transparent;
+    transition: color .2s, border-color .2s; }
+  nav.primary a:hover { color: var(--paper); }
+  nav.primary a.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .nav-toggle { display: none; background: none; border: 1px solid var(--line-strong);
+    color: var(--paper); padding: 8px 12px; border-radius: 4px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; cursor: pointer; }
+  @media (max-width: 820px) {
+    nav.primary { display: none; }
+    nav.primary.open { display: flex; position: absolute; top: 76px; right: 0; left: 0;
+      flex-direction: column; gap: 0; background: var(--bg-2);
+      border-bottom: 1px solid var(--line); padding: 12px 32px 24px; }
+    nav.primary.open a { padding: 14px 0; border-bottom: 1px solid var(--line); }
+    .nav-toggle { display: block; }
+  }
+
+  main { min-height: 60vh; }
+  .page { display: none; }
+  .page.active { display: block; }
+
+  h1, h2, h3, h4 { font-family: var(--display); font-weight: 500; color: var(--paper); margin: 0; }
+  h1 { font-size: clamp(44px, 7vw, 96px); line-height: 0.98; letter-spacing: -0.01em; }
+  h2 { font-size: clamp(32px, 4.4vw, 56px); line-height: 1.05; letter-spacing: -0.005em; }
+  h3 { font-size: clamp(22px, 2.2vw, 30px); line-height: 1.15; }
+  .eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.26em;
+    text-transform: uppercase; color: var(--accent);
+    display: inline-flex; align-items: center; gap: 10px; }
+  .eyebrow::before { content: ""; display: inline-block; width: 26px; height: 1px; background: var(--accent); }
+  .lead { font-size: 18px; line-height: 1.6; color: var(--paper-dim); max-width: 58ch; }
+
+  .btn { display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 22px; font-family: var(--sans); font-weight: 500;
+    font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase;
+    text-decoration: none; cursor: pointer; border: none;
+    transition: transform .15s, background .2s, color .2s; }
+  .btn-primary { background: var(--accent); color: var(--ink); }
+  .btn-primary:hover { background: #e0b657; }
+  .btn-ghost { background: transparent; color: var(--paper); border: 1px solid var(--line-strong); }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-arrow::after { content: "→"; font-family: var(--sans); font-weight: 400;
+    margin-left: 4px; transition: transform .2s; }
+  .btn-arrow:hover::after { transform: translateX(4px); }
+
+  .hero { position: relative; min-height: calc(100vh - 76px);
+    display: grid; grid-template-columns: 1.1fr 1fr; gap: 0; overflow: hidden; }
+  .hero-copy { padding: 80px 32px 80px 60px;
+    display: flex; flex-direction: column; justify-content: center;
+    position: relative; z-index: 2; }
+  .hero-copy .est { font-family: var(--mono); font-size: 11px; letter-spacing: 0.3em;
+    color: var(--paper-dim); text-transform: uppercase; margin-bottom: 28px; }
+  .hero-copy h1 { margin-bottom: 28px; }
+  .hero-copy h1 em { font-style: italic; color: var(--accent); font-weight: 500; }
+  .hero-copy .lead { margin-bottom: 44px; }
+  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+  .hero-photo { position: relative; background-size: cover; background-position: center; min-height: 520px; }
+  .hero-photo::after { content: ""; position: absolute; inset: 0;
+    background: linear-gradient(90deg, var(--bg) 0%, transparent 28%, transparent 100%); }
+  .hero-ticker { position: absolute; bottom: 0; left: 0; right: 0;
+    border-top: 1px solid var(--line); background: rgba(12,8,6,0.7);
+    padding: 14px 32px; display: flex; gap: 48px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em;
+    color: var(--paper-dim); text-transform: uppercase; z-index: 3; }
+  .hero-ticker b { color: var(--accent); font-weight: 500; }
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-copy { padding: 60px 24px; }
+    .hero-photo { min-height: 380px; order: -1; }
+    .hero-ticker { position: static; flex-wrap: wrap; gap: 20px; padding: 16px 24px; }
+  }
+
+  .directory { padding: 120px 0; border-top: 1px solid var(--line); }
+  .dir-head { display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+    margin-bottom: 60px; align-items: end; }
+  .dir-head .lead { margin: 0; }
+  @media (max-width: 820px) { .dir-head { grid-template-columns: 1fr; gap: 24px; } }
+  .store-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  @media (max-width: 820px) { .store-grid { grid-template-columns: 1fr; } }
+  .store-card { background: var(--bg-2); border: 1px solid var(--line);
+    overflow: hidden; display: flex; flex-direction: column;
+    position: relative; transition: border-color .2s, transform .2s;
+    text-decoration: none; color: inherit; }
+  .store-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .store-card .media { aspect-ratio: 16/10;
+    background-size: cover; background-position: center;
+    position: relative; border-bottom: 3px solid var(--crimson); }
+  .store-card .media::after { content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(12,8,6,0.55) 100%); }
+  .store-card .badge { position: absolute; top: 20px; left: 20px;
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.26em; text-transform: uppercase;
+    color: var(--paper); background: rgba(12,8,6,0.7);
+    padding: 6px 10px; border: 1px solid var(--line-strong); z-index: 2; }
+  .store-card .body { padding: 32px; }
+  .store-card h3 { font-size: 32px; margin-bottom: 8px; }
+  .store-card .loc { font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--paper-dim); margin-bottom: 20px; }
+  .store-card .meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    padding-top: 24px; border-top: 1px solid var(--line);
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--paper-dim); }
+  .store-card .meta b { display:block; color: var(--paper); font-weight: 500; margin-bottom: 4px; font-size: 12px; }
+  .store-card .arrow { position: absolute; top: 32px; right: 32px;
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 1px solid var(--line-strong); display: grid; place-items: center;
+    color: var(--paper-dim);
+    transition: background .2s, color .2s, border-color .2s; }
+  .store-card:hover .arrow { background: var(--accent); color: var(--ink); border-color: var(--accent); }
+
+  .story { padding: 120px 0; border-top: 1px solid var(--line); background: var(--bg-2); }
+  .story-inner { display: grid; grid-template-columns: 1fr 1.1fr;
+    gap: 80px; align-items: center; }
+  @media (max-width: 900px) { .story-inner { grid-template-columns: 1fr; gap: 40px; } }
+  .story-inner h2 em { font-style: italic; color: var(--accent); }
+  .story-inner p { margin: 16px 0; color: var(--paper-dim); font-size: 17px; }
+  .story-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .story-photos .p { aspect-ratio: 4/5;
+    background-size: cover; background-position: center;
+    border: 1px solid var(--line); }
+  .story-photos .p:nth-child(1) { margin-top: 40px; }
+  .numbers { display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 40px; margin-top: 40px;
+    padding-top: 32px; border-top: 1px solid var(--line); }
+  .numbers .n { font-family: var(--display); font-size: 48px; color: var(--accent); line-height: 1; }
+  .numbers .l { font-family: var(--mono); font-size: 11px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--paper-dim); margin-top: 10px; }
+
+  .cats { padding: 120px 0; border-top: 1px solid var(--line); }
+  .cats-head { text-align: center; margin-bottom: 80px; }
+  .cats-head .eyebrow { justify-content: center; margin-bottom: 20px; }
+  .cats-head h2 { max-width: 16ch; margin: 0 auto; }
+  .cat-grid { display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  @media (max-width: 900px) { .cat-grid { grid-template-columns: repeat(2, 1fr); } }
+  .cat { background: var(--bg); padding: 40px 28px;
+    display: flex; flex-direction: column; gap: 16px;
+    min-height: 220px; justify-content: space-between; transition: background .2s; }
+  .cat:hover { background: var(--bg-3); }
+  .cat .num { font-family: var(--mono); font-size: 11px; letter-spacing: 0.22em; color: var(--accent); }
+  .cat h3 { font-size: 26px; }
+  .cat .desc { font-size: 13px; color: var(--paper-dim);
+    font-family: var(--sans); line-height: 1.5; }
+
+  .visit { padding: 140px 0; border-top: 1px solid var(--line);
+    background: linear-gradient(180deg, var(--bg) 0%, #0c0806 100%);
+    text-align: center; }
+  .visit h2 { max-width: 18ch; margin: 20px auto 32px; }
+  .visit h2 em { font-style: italic; color: var(--accent); }
+
+  .page-head { padding: 100px 0 60px; border-bottom: 1px solid var(--line); }
+  .page-head .eyebrow { margin-bottom: 20px; }
+  .page-head h1 { margin-bottom: 20px; }
+  .page-head .lead { max-width: 68ch; }
+
+  .stores-list { padding: 80px 0 120px; }
+  .store-row { display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+    padding: 60px 0; border-bottom: 1px solid var(--line); align-items: center; }
+  .store-row:last-child { border-bottom: none; }
+  .store-row.reverse .photos { order: 2; }
+  @media (max-width: 900px) {
+    .store-row, .store-row.reverse { grid-template-columns: 1fr; gap: 32px; }
+    .store-row.reverse .photos { order: 0; }
+  }
+  .store-row .photos { display: grid; grid-template-columns: 2fr 1fr; gap: 12px;
+    grid-template-rows: 1fr 1fr; height: 520px; }
+  .store-row .photos .p1 { grid-row: 1 / 3;
+    background-size: cover; background-position: center; border: 1px solid var(--line); }
+  .store-row .photos .p2, .store-row .photos .p3 {
+    background-size: cover; background-position: center; border: 1px solid var(--line); }
+  .store-row .info h2 { margin-bottom: 16px; }
+  .store-row .info .rating { display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em;
+    color: var(--paper-dim); margin-bottom: 24px; }
+  .store-row .info .rating b { color: var(--accent); font-weight: 500; }
+  .store-row .info .blurb { font-size: 17px; color: var(--paper-dim); margin-bottom: 32px; }
+  .facts { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 40px;
+    padding: 28px 0; border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line); margin-bottom: 28px; }
+  .fact .k { font-family: var(--mono); font-size: 10px; letter-spacing: 0.24em;
+    text-transform: uppercase; color: var(--paper-dim); margin-bottom: 6px; }
+  .fact .v { font-size: 15px; color: var(--paper); }
+  .fact .v a { color: var(--accent); text-decoration: none; }
+  .fact .v a:hover { text-decoration: underline; }
+
+  .hours-table { display: grid; grid-template-columns: auto 1fr;
+    column-gap: 24px; row-gap: 6px;
+    font-family: var(--mono); font-size: 12px; color: var(--paper-dim); }
+  .hours-table .d { color: var(--paper); }
+
+  .row-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  .map-strip { padding: 80px 0; background: var(--bg-2);
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .map-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+    background: var(--line); border: 1px solid var(--line); }
+  @media (max-width: 820px) { .map-grid { grid-template-columns: 1fr; } }
+  .map-tile { aspect-ratio: 4/3; background: var(--bg);
+    position: relative; padding: 28px;
+    display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; }
+  .map-tile iframe { position: absolute; inset: 0; width: 100%; height: 100%;
+    border: 0; filter: grayscale(0.2) brightness(0.85); }
+  .map-tile .label { position: relative; z-index: 2;
+    background: rgba(12,8,6,0.85); padding: 16px 20px;
+    display: inline-flex; flex-direction: column; align-self: flex-start;
+    max-width: 280px; border-left: 3px solid var(--accent); }
+  .map-tile .label h4 { font-size: 18px; margin-bottom: 4px; }
+  .map-tile .label span { font-family: var(--mono); font-size: 11px; color: var(--paper-dim); letter-spacing: 0.1em; }
+
+  .about-intro { padding: 120px 0 80px; }
+  .about-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 80px; align-items: start; }
+  @media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; gap: 40px; } }
+  .about-grid h1 em { font-style: italic; color: var(--accent); }
+  .about-grid p { font-size: 17px; color: var(--paper-dim); margin: 14px 0; }
+  .about-feature { aspect-ratio: 4/5;
+    background-size: cover; background-position: center;
+    border: 1px solid var(--line); }
+  .values { padding: 100px 0; border-top: 1px solid var(--line); background: var(--bg-2); }
+  .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 60px; }
+  @media (max-width: 820px) { .values-grid { grid-template-columns: 1fr; } }
+  .value { border-top: 1px solid var(--accent); padding-top: 24px; }
+  .value .n { font-family: var(--mono); font-size: 11px; letter-spacing: 0.26em;
+    color: var(--accent); margin-bottom: 16px; }
+  .value h3 { margin-bottom: 12px; }
+  .value p { color: var(--paper-dim); font-size: 15px; }
+
+  .contact-block { padding: 120px 0; border-top: 1px solid var(--line); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+  @media (max-width: 820px) { .contact-grid { grid-template-columns: 1fr; } }
+  .contact-card { padding: 40px; background: var(--bg-2);
+    border: 1px solid var(--line); border-top: 3px solid var(--crimson); }
+  .contact-card h3 { margin-bottom: 4px; font-size: 28px; }
+  .contact-card .place { font-family: var(--mono); font-size: 11px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--paper-dim); margin-bottom: 28px; }
+  .contact-card .phone { font-family: var(--display); font-size: 40px;
+    color: var(--accent); text-decoration: none;
+    display: block; margin: 8px 0 16px; }
+  .contact-card address { font-style: normal; color: var(--paper-dim);
+    font-size: 15px; line-height: 1.6; }
+
+  footer { background: #0a0705; border-top: 1px solid var(--line);
+    padding: 80px 0 40px; margin-top: 0; }
+  .foot-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px;
+    padding-bottom: 60px; border-bottom: 1px solid var(--line); }
+  @media (max-width: 820px) { .foot-grid { grid-template-columns: 1fr 1fr; gap: 40px; } }
+  .foot-col h4 { font-family: var(--mono); font-size: 11px; letter-spacing: 0.24em;
+    text-transform: uppercase; color: var(--paper); margin-bottom: 20px; font-weight: 500; }
+  .foot-col a, .foot-col p { display: block; color: var(--paper-dim); font-size: 14px;
+    text-decoration: none; margin: 8px 0; line-height: 1.6; }
+  .foot-col a:hover { color: var(--accent); }
+  .foot-brand { font-family: var(--display); font-size: 28px; margin-bottom: 12px; }
+  .foot-brand-sub { font-family: var(--mono); font-size: 11px; letter-spacing: 0.22em;
+    color: var(--paper-dim); text-transform: uppercase; margin-bottom: 20px; }
+  .foot-legal { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px;
+    padding-top: 30px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
+    color: var(--paper-dim); text-transform: uppercase; }
+
+  .age-gate { position: fixed; inset: 0; z-index: 100;
+    background: rgba(10,7,5,0.96); backdrop-filter: blur(6px);
+    display: grid; place-items: center; padding: 24px; }
+  .age-gate.hide { display: none; }
+  .age-card { max-width: 520px; width: 100%;
+    background: var(--bg-2); border: 1px solid var(--line-strong);
+    padding: 56px 48px; text-align: center; position: relative; }
+  .age-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent); }
+  .age-card .brand-mark { margin: 0 auto 24px; width: 56px; height: 56px; font-size: 24px; }
+  .age-card h2 { font-size: 40px; margin-bottom: 16px; }
+  .age-card p { color: var(--paper-dim); font-size: 15px; line-height: 1.6;
+    max-width: 40ch; margin: 0 auto 32px; }
+  .age-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .age-deny { color: var(--paper-dim); background: transparent; border: 1px solid var(--line-strong); }
+  .age-fine { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em;
+    color: var(--paper-dim); text-transform: uppercase;
+    margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--line); }
+
+  #tweaks { position: fixed; right: 24px; bottom: 24px;
+    width: 320px; max-height: 80vh; overflow: auto;
+    background: #0a0705; color: var(--paper); border: 1px solid var(--accent);
+    font-family: var(--sans); font-size: 13px; z-index: 80;
+    display: none; box-shadow: 0 24px 60px rgba(0,0,0,0.6); }
+  #tweaks.visible { display: block; }
+  #tweaks .head { padding: 14px 18px; border-bottom: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--accent); }
+  #tweaks .body { padding: 18px; }
+  #tweaks label { display: block; margin-bottom: 16px;
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--paper-dim); }
+  #tweaks label input, #tweaks label select {
+    display: block; margin-top: 6px; width: 100%;
+    background: var(--bg); color: var(--paper); border: 1px solid var(--line-strong);
+    padding: 8px 10px; font-family: var(--sans); font-size: 13px;
+    letter-spacing: normal; text-transform: none; }
+  #tweaks label input[type="color"] { height: 36px; padding: 2px; cursor: pointer; }
+  #tweaks label input[type="checkbox"] { display: inline-block; width: auto; margin: 0 8px 0 0; vertical-align: middle; }
+  #tweaks .row { display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 16px; font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--paper-dim); }
+
+  .rule { display: flex; align-items: center; gap: 16px; margin: 20px 0;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.24em;
+    color: var(--paper-dim); text-transform: uppercase; }
+  .rule::before, .rule::after { content: ""; flex: 1; height: 1px; background: var(--line-strong); }
+
+  /* ============================================
+     MOBILE POLISH (≤ 640px)
+     Ensures phones get the same visual language,
+     just restacked and appropriately scaled.
+     ============================================ */
+  @media (max-width: 640px) {
+    body { font-size: 15px; }
+    .wrap { padding: 0 20px; }
+
+    /* ---- Header ---- */
+    header.site .bar { height: 64px; }
+    .brand-mark { width: 38px; height: 38px; font-size: 17px; }
+    .brand-name { font-size: 17px; letter-spacing: 0.05em; }
+    .brand-sub { font-size: 9px; letter-spacing: 0.18em; margin-top: 3px; }
+    .nav-toggle { padding: 7px 10px; font-size: 10px; }
+    nav.primary.open { top: 64px; padding: 8px 20px 20px; }
+
+    /* ---- Headings scale down more aggressively ---- */
+    h1 { font-size: 44px; line-height: 1.02; }
+    h2 { font-size: 30px; line-height: 1.1; }
+    h3 { font-size: 22px; }
+    .lead { font-size: 16px; }
+
+    /* ---- Hero ---- */
+    .hero { min-height: auto; }
+    .hero-copy { padding: 44px 20px 48px; }
+    .hero-copy .est { margin-bottom: 18px; font-size: 10px; }
+    .hero-copy h1 { margin-bottom: 20px; }
+    .hero-copy .lead { margin-bottom: 32px; }
+    .hero-photo { min-height: 280px; }
+    .hero-ctas { gap: 10px; }
+    .hero-ctas .btn { flex: 1; justify-content: center; padding: 14px 14px; font-size: 11px; letter-spacing: 0.12em; }
+    .hero-ticker { flex-direction: column; gap: 8px; padding: 14px 20px;
+      font-size: 10px; letter-spacing: 0.14em; }
+    .hero-ticker span { display: flex; gap: 8px; }
+
+    /* ---- Section spacing ---- */
+    .directory, .story, .cats, .visit,
+    .about-intro, .values, .contact-block,
+    .stores-list, .map-strip { padding: 64px 0; }
+    .page-head { padding: 56px 0 36px; }
+
+    /* ---- Directory / story ---- */
+    .dir-head { gap: 18px; margin-bottom: 36px; }
+    .store-grid { gap: 24px; }
+    .store-card .body { padding: 24px; }
+    .store-card h3 { font-size: 24px; }
+    .store-card .meta { grid-template-columns: 1fr 1fr; gap: 14px; padding-top: 18px; font-size: 10px; }
+    .store-card .meta div:nth-child(3) { grid-column: 1 / -1; }
+    .store-card .arrow { top: 24px; right: 24px; width: 32px; height: 32px; }
+
+    .story-inner { gap: 32px; }
+    .story-photos { gap: 10px; }
+    .story-photos .p:nth-child(1) { margin-top: 20px; }
+    .numbers { grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; padding-top: 24px; }
+    .numbers .n { font-size: 34px; }
+    .numbers .l { font-size: 9px; letter-spacing: 0.16em; }
+
+    /* ---- Categories ---- */
+    .cats-head { margin-bottom: 48px; }
+    .cat { padding: 28px 22px; min-height: 180px; }
+    .cat h3 { font-size: 22px; }
+    .cat .desc { font-size: 13px; }
+
+    /* ---- Visit / CTA ---- */
+    .visit h2 { margin: 14px auto 24px; }
+
+    /* ---- Stores page rows ---- */
+    .store-row, .store-row.reverse { padding: 36px 0; gap: 24px; }
+    .store-row .photos { grid-template-columns: 1fr 1fr; grid-template-rows: 180px 120px;
+      height: auto; gap: 8px; }
+    .store-row .photos .p1 { grid-column: 1 / -1; grid-row: 1; }
+    .store-row .photos .p2 { grid-row: 2; }
+    .store-row .photos .p3 { grid-row: 2; }
+    .facts { grid-template-columns: 1fr; gap: 18px; padding: 22px 0; margin-bottom: 22px; }
+    .row-ctas .btn { flex: 1; justify-content: center; min-width: 0; padding: 13px 12px;
+      font-size: 11px; letter-spacing: 0.12em; }
+
+    /* ---- Map tiles ---- */
+    .map-tile { padding: 18px; }
+    .map-tile .label { padding: 12px 14px; max-width: 100%; }
+    .map-tile .label h4 { font-size: 16px; }
+    .map-tile[style*="21/9"] { aspect-ratio: 4/3 !important; }
+
+    /* ---- About / values ---- */
+    .about-grid { gap: 32px; }
+    .values-grid { gap: 28px; margin-top: 40px; }
+
+    /* ---- Contact cards ---- */
+    .contact-card { padding: 28px 24px; }
+    .contact-card h3 { font-size: 24px; }
+    .contact-card .phone { font-size: 32px; }
+
+    /* ---- Footer ---- */
+    footer { padding: 56px 0 32px; }
+    .foot-grid { grid-template-columns: 1fr; gap: 32px; padding-bottom: 40px; }
+    .foot-brand { font-size: 24px; }
+    .foot-legal { flex-direction: column; gap: 8px; font-size: 9px; letter-spacing: 0.1em; }
+
+    /* ---- Age gate ---- */
+    .age-card { padding: 40px 24px; }
+    .age-card h2 { font-size: 32px; }
+    .age-card p { font-size: 14px; }
+    .age-actions { flex-direction: column; }
+    .age-actions .btn { width: 100%; justify-content: center; }
+
+    /* ---- Tweaks panel ---- */
+    #tweaks { right: 12px; left: 12px; bottom: 12px; width: auto; max-height: 70vh; }
+
+    /* ---- Buttons across the board on mobile ---- */
+    .btn { padding: 13px 18px; font-size: 11px; letter-spacing: 0.14em; }
+  }
+
+  /* Extra-tight phones */
+  @media (max-width: 380px) {
+    h1 { font-size: 38px; }
+    h2 { font-size: 26px; }
+    .hero-copy { padding: 36px 16px 40px; }
+    .wrap { padding: 0 16px; }
+    .brand-sub { display: none; }
+  }
+
+  /* Tablet (641-900px) — let some 2-col layouts breathe again */
+  @media (min-width: 641px) and (max-width: 900px) {
+    h1 { font-size: 64px; }
+    h2 { font-size: 42px; }
+    .store-row .photos { height: 420px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="age-gate" id="ageGate">
+  <div class="age-card">
+    <div class="brand-mark">S5</div>
+    <h2>Welcome, friend.</h2>
+    <p>To enter the Sonufive family of stores, please confirm you are of legal drinking age in your state.</p>
+    <div class="age-actions">
+      <button class="btn btn-primary" id="ageYes">I am 21 or older</button>
+      <button class="btn age-deny" id="ageNo">Under 21</button>
+    </div>
+    <div class="age-fine">Please drink responsibly · Do not share with minors</div>
+  </div>
+</div>
+
+<header class="site">
+  <div class="wrap bar">
+    <a href="#/" class="brand">
+      <span class="brand-mark">S5</span>
+      <span>
+        <span class="brand-name">Sonufive</span>
+        <span class="brand-sub">Family of Liquor Stores · EST. 2014</span>
+      </span>
+    </a>
+    <nav class="primary" id="nav">
+      <a href="#/" data-route="/">Home</a>
+      <a href="#/stores" data-route="/stores">Our Stores</a>
+      <a href="#/chaparral" data-route="/chaparral">Chaparral</a>
+      <a href="#/stirups" data-route="/stirups">Stir-Ups</a>
+      <a href="#/about" data-route="/about">About</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle">Menu</button>
+  </div>
+</header>
+
+<main>
+
+<section class="page" data-route="/">
+  <div class="hero">
+    <div class="hero-copy">
+      <span class="est">Est. 2014 · Aubrey, TX</span>
+      <h1>Your neighborhood <em>spirits shop</em>, times two.</h1>
+      <p class="lead">Sonufive LLC is the family behind two North Texas liquor stores. A decade of pouring, stocking, and knowing our regulars by name — now under one roof online.</p>
+      <div class="hero-ctas">
+        <a href="#/stores" class="btn btn-primary btn-arrow">Find a store</a>
+        <a href="#/about" class="btn btn-ghost">Our story</a>
+      </div>
+    </div>
+    <div class="hero-photo" style="background-image: url('assets/photos/chaparral-hero.jpg');"></div>
+    <div class="hero-ticker">
+      <span><b>02</b> &nbsp;Locations</span>
+      <span><b>10+</b> &nbsp;Years in business</span>
+      <span><b>4.4★</b> &nbsp;Google rating</span>
+      <span><b>Mon–Sat</b> &nbsp;10am – 9pm</span>
+    </div>
+  </div>
+
+  <section class="directory">
+    <div class="wrap">
+      <div class="dir-head">
+        <div>
+          <span class="eyebrow">Our Stores</span>
+          <h2 style="margin-top:16px;">Two shops. One family. Pick your aisle.</h2>
+        </div>
+        <p class="lead">Stocked floor-to-ceiling with wine, craft beer, spirits, and hard-to-find bottles — staffed by people who actually know their stuff.</p>
+      </div>
+
+      <div class="store-grid">
+        <a href="#/chaparral" class="store-card">
+          <div class="media" style="background-image: url('assets/photos/chaparral-hero.jpg');">
+            <span class="badge">Store 01</span>
+          </div>
+          <div class="body">
+            <div class="arrow">→</div>
+            <h3>Chaparral Liquor Store</h3>
+            <div class="loc">Aubrey, Texas</div>
+            <div class="meta">
+              <div><b>4.4★</b>110 reviews</div>
+              <div><b>Mon–Sat</b>10a – 9p</div>
+              <div><b>(940)</b>365-9938</div>
+            </div>
+          </div>
+        </a>
+
+        <a href="#/stirups" class="store-card">
+          <div class="media" style="background-image: url('assets/photos/aisle-spirits.jpg');">
+            <span class="badge">Store 02</span>
+          </div>
+          <div class="body">
+            <div class="arrow">→</div>
+            <h3>Stir-Ups Liquors</h3>
+            <div class="loc">Bartonville, Texas</div>
+            <div class="meta">
+              <div><b>Full</b>Selection</div>
+              <div><b>Mon–Sat</b>10a – 9p</div>
+              <div><b>(940)</b>584-0380</div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="story">
+    <div class="wrap story-inner">
+      <div>
+        <span class="eyebrow">Our Story</span>
+        <h2 style="margin-top:16px;">A decade of pouring <em>for the neighborhood</em>.</h2>
+        <p>Sonufive LLC has been family-run since day one. What started as a single shop in Aubrey has become a pair of stores that locals rely on for everything from a Tuesday six-pack to the bottle that makes the anniversary.</p>
+        <p>We're not a chain. We restock what our customers ask for, we remember your last pick, and we'll admit when something isn't worth the price tag.</p>
+        <div class="numbers">
+          <div><div class="n">10+</div><div class="l">Years open</div></div>
+          <div><div class="n">02</div><div class="l">Locations</div></div>
+          <div><div class="n">4.4★</div><div class="l">Avg. rating</div></div>
+        </div>
+      </div>
+      <div class="story-photos">
+        <div class="p" style="background-image: url('assets/photos/aisle-vodka.jpg');"></div>
+        <div class="p" style="background-image: url('assets/photos/aisle-whiskey.jpg');"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cats">
+    <div class="wrap">
+      <div class="cats-head">
+        <span class="eyebrow">What we stock</span>
+        <h2>Whatever you're pouring, we've got the bottle for it.</h2>
+      </div>
+      <div class="cat-grid">
+        <div class="cat"><div class="num">01</div><h3>Wine</h3><p class="desc">Reds, whites, and something for the dinner party you haven't told us about yet.</p></div>
+        <div class="cat"><div class="num">02</div><h3>Craft Beer</h3><p class="desc">Rotating local taps in bottle form, plus the macro six-pack for game night.</p></div>
+        <div class="cat"><div class="num">03</div><h3>Spirits</h3><p class="desc">Whiskey, bourbon, tequila, gin, vodka — the deep shelves you actually want.</p></div>
+        <div class="cat"><div class="num">04</div><h3>Hard-to-Find</h3><p class="desc">Special requests welcome. If we don't carry it, there's a good chance we can get it.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="visit">
+    <div class="wrap">
+      <span class="eyebrow" style="justify-content:center; display:inline-flex;">Come on in</span>
+      <h2>No online cart. <em>Just good conversation</em> and a fully stocked shelf.</h2>
+      <div class="hero-ctas" style="justify-content:center;">
+        <a href="#/stores" class="btn btn-primary btn-arrow">See both locations</a>
+        <a href="tel:19403659938" class="btn btn-ghost">Call Chaparral</a>
+        <a href="tel:19405840380" class="btn btn-ghost">Call Stir-Ups</a>
+      </div>
+    </div>
+  </section>
+</section>
+
+<section class="page" data-route="/stores">
+  <div class="page-head">
+    <div class="wrap">
+      <span class="eyebrow">Our Stores</span>
+      <h1>Two locations. <em style="font-style:italic;color:var(--accent);">One family, serving North Texas.</em></h1>
+      <p class="lead">Every bottle on our shelves is hand-picked by our team. Stop in, say hi, and let us know what you're looking for — we probably have it, or we can get it.</p>
+    </div>
+  </div>
+
+  <div class="wrap stores-list">
+    <div class="store-row">
+      <div class="photos">
+        <div class="p1" style="background-image: url('assets/photos/chaparral-hero.jpg');"></div>
+        <div class="p2" style="background-image: url('assets/photos/aisle-whiskey.jpg');"></div>
+        <div class="p3" style="background-image: url('assets/photos/exterior.jpg');"></div>
+      </div>
+      <div class="info">
+        <span class="eyebrow">Store 01</span>
+        <h2 style="margin-top:16px;">Chaparral Liquor Store</h2>
+        <div class="rating"><b>★ 4.4</b> · 110 Google reviews · Aubrey, TX</div>
+        <p class="blurb">A North Texas staple since 2014. Known for helpful, smiling staff, a deep spirits wall, and a freezer stocked for the Friday crowd. Located right next to the Exxon off US-377.</p>
+        <div class="facts">
+          <div class="fact"><div class="k">Address</div><div class="v">708 US-377<br>Aubrey, TX 76227</div></div>
+          <div class="fact"><div class="k">Phone</div><div class="v"><a href="tel:19403659938">(940) 365-9938</a></div></div>
+          <div class="fact"><div class="k">Specialties</div><div class="v">Wine · Craft Beer · Full Spirits Wall · Miller Lite cold case</div></div>
+          <div class="fact"><div class="k">Located in</div><div class="v">Next to Exxon on US-377</div></div>
+          <div class="fact" style="grid-column: 1 / -1;">
+            <div class="k">Hours</div>
+            <div class="v">
+              <div class="hours-table">
+                <span class="d">Mon – Thu</span><span>10:00 am – 9:00 pm</span>
+                <span class="d">Friday</span><span>10:00 am – 9:00 pm</span>
+                <span class="d">Saturday</span><span>10:00 am – 9:00 pm</span>
+                <span class="d">Sunday</span><span>Closed</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row-ctas">
+          <a href="https://maps.google.com/?q=708+US-377+Aubrey+TX+76227" target="_blank" rel="noopener" class="btn btn-primary btn-arrow">Get directions</a>
+          <a href="https://www.google.com/search?q=Chaparral+Liquor+Store+Aubrey+reviews" target="_blank" rel="noopener" class="btn btn-ghost">Read reviews</a>
+          <a href="#/chaparral" class="btn btn-ghost">More about store</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="store-row reverse">
+      <div class="photos">
+        <div class="p1" style="background-image: url('assets/photos/aisle-spirits.jpg');"></div>
+        <div class="p2" style="background-image: url('assets/photos/aisle-vodka.jpg');"></div>
+        <div class="p3" style="background-image: url('assets/photos/interior-wide.jpg');"></div>
+      </div>
+      <div class="info">
+        <span class="eyebrow">Store 02</span>
+        <h2 style="margin-top:16px;">Stir-Ups Liquors</h2>
+        <div class="rating"><b>★ ★ ★ ★ ★</b> · Bartonville, TX</div>
+        <p class="blurb">Our second Sonufive location — full selection of wine, craft beer, and spirits on FM 407 in Bartonville. Same neighborhood feel, same honest recommendations, a short drive south of Chaparral.</p>
+        <div class="facts">
+          <div class="fact"><div class="k">Address</div><div class="v">1842 FM 407<br>Bartonville, TX 76226</div></div>
+          <div class="fact"><div class="k">Phone</div><div class="v"><a href="tel:19405840380">(940) 584-0380</a></div></div>
+          <div class="fact"><div class="k">Specialties</div><div class="v">Wine · Craft Beer · Full Spirits Wall</div></div>
+          <div class="fact"><div class="k">Located on</div><div class="v">FM 407, Bartonville</div></div>
+          <div class="fact" style="grid-column: 1 / -1;">
+            <div class="k">Hours</div>
+            <div class="v">
+              <div class="hours-table">
+                <span class="d">Mon – Thu</span><span>10:00 am – 9:00 pm</span>
+                <span class="d">Friday</span><span>10:00 am – 9:00 pm</span>
+                <span class="d">Saturday</span><span>10:00 am – 9:00 pm</span>
+                <span class="d">Sunday</span><span>Closed</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row-ctas">
+          <a href="https://maps.google.com/?q=1842+FM+407+Bartonville+TX+76226" target="_blank" rel="noopener" class="btn btn-primary btn-arrow">Get directions</a>
+          <a href="tel:19405840380" class="btn btn-ghost">Call the store</a>
+          <a href="#/stirups" class="btn btn-ghost">More about store</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="map-strip">
+    <div class="wrap">
+      <span class="eyebrow">Find us on the map</span>
+      <h2 style="margin: 16px 0 40px;">North Texas, north of Denton.</h2>
+      <div class="map-grid">
+        <div class="map-tile">
+          <iframe loading="lazy" allowfullscreen
+            src="https://maps.google.com/maps?q=708%20US-377%20Aubrey%20TX%2076227&t=m&z=14&output=embed"></iframe>
+          <div class="label">
+            <h4>Chaparral Liquor Store</h4>
+            <span>708 US-377 · Aubrey, TX</span>
+          </div>
+        </div>
+        <div class="map-tile">
+          <iframe loading="lazy" allowfullscreen
+            src="https://maps.google.com/maps?q=1842%20FM%20407%20Bartonville%20TX%2076226&t=m&z=14&output=embed"></iframe>
+          <div class="label">
+            <h4>Stir-Ups Liquors</h4>
+            <span>1842 FM 407 · Bartonville, TX</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+
+<section class="page" data-route="/chaparral">
+  <div class="page-head">
+    <div class="wrap">
+      <span class="eyebrow">Store 01 · Aubrey, TX</span>
+      <h1>Chaparral <em style="font-style:italic;color:var(--accent);">Liquor Store</em></h1>
+      <p class="lead">A point-of-interest liquor store known for its helpful, smiling staff — and a shelf that goes from floor to ceiling.</p>
+    </div>
+  </div>
+
+  <div class="wrap" style="padding: 80px 0;">
+    <div class="store-row" style="border: none; padding: 0;">
+      <div class="photos">
+        <div class="p1" style="background-image: url('assets/photos/chaparral-hero.jpg');"></div>
+        <div class="p2" style="background-image: url('assets/photos/aisle-whiskey.jpg');"></div>
+        <div class="p3" style="background-image: url('assets/photos/interior-wide.jpg');"></div>
+      </div>
+      <div class="info">
+        <div class="rating"><b>★ 4.4</b> · Based on 110 Google reviews</div>
+        <p class="blurb">We've been part of the Aubrey community since we opened our doors. Whether you're grabbing a six-pack on the way home or picking out the right bottle for a celebration, our team is here to help — never judgmental, always honest.</p>
+
+        <div class="facts">
+          <div class="fact"><div class="k">Address</div><div class="v">708 US-377<br>Aubrey, TX 76227</div></div>
+          <div class="fact"><div class="k">Phone</div><div class="v"><a href="tel:19403659938">(940) 365-9938</a></div></div>
+          <div class="fact"><div class="k">Located in</div><div class="v">Next to Exxon, US-377</div></div>
+          <div class="fact"><div class="k">Category</div><div class="v">Small business · Liquor store</div></div>
+        </div>
+
+        <h3 style="margin-bottom: 16px;">Hours</h3>
+        <div class="hours-table" style="margin-bottom: 32px;">
+          <span class="d">Monday</span><span>10:00 am – 9:00 pm</span>
+          <span class="d">Tuesday</span><span>10:00 am – 9:00 pm</span>
+          <span class="d">Wednesday</span><span>10:00 am – 9:00 pm</span>
+          <span class="d">Thursday</span><span>10:00 am – 9:00 pm</span>
+          <span class="d">Friday</span><span>10:00 am – 9:00 pm</span>
+          <span class="d">Saturday</span><span>10:00 am – 9:00 pm</span>
+          <span class="d">Sunday</span><span>Closed</span>
+        </div>
+
+        <div class="row-ctas">
+          <a href="tel:19403659938" class="btn btn-primary btn-arrow">Call the store</a>
+          <a href="https://maps.google.com/?q=708+US-377+Aubrey+TX+76227" target="_blank" rel="noopener" class="btn btn-ghost">Get directions</a>
+          <a href="https://www.google.com/search?q=Chaparral+Liquor+Store+Aubrey+reviews" target="_blank" rel="noopener" class="btn btn-ghost">Google reviews</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="rule">Specialties</div>
+
+    <div class="cat-grid" style="margin-top: 40px;">
+      <div class="cat"><div class="num">01</div><h3>Wine</h3><p class="desc">A working wall of reds and whites for every occasion.</p></div>
+      <div class="cat"><div class="num">02</div><h3>Craft &amp; Macro Beer</h3><p class="desc">Local craft rotations plus the cold case you came in for.</p></div>
+      <div class="cat"><div class="num">03</div><h3>Whiskey &amp; Bourbon</h3><p class="desc">Everyday pours up to the top-shelf anniversary bottle.</p></div>
+      <div class="cat"><div class="num">04</div><h3>Tequila · Gin · Vodka</h3><p class="desc">Full spirits wall, stocked deep, turned over often.</p></div>
+    </div>
+  </div>
+
+  <section class="map-strip">
+    <div class="wrap">
+      <div class="map-grid" style="grid-template-columns: 1fr;">
+        <div class="map-tile" style="aspect-ratio: 21/9;">
+          <iframe loading="lazy" allowfullscreen
+            src="https://maps.google.com/maps?q=708%20US-377%20Aubrey%20TX%2076227&t=m&z=15&output=embed"></iframe>
+          <div class="label">
+            <h4>Chaparral Liquor Store</h4>
+            <span>708 US-377 · Aubrey, TX 76227</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+
+<section class="page" data-route="/about">
+  <div class="page-head">
+    <div class="wrap">
+      <span class="eyebrow">About Sonufive LLC</span>
+      <h1>Two shops. <em style="font-style:italic;color:var(--accent);">One family.</em> A decade in.</h1>
+      <p class="lead">Sonufive LLC is the holding company behind two North Texas liquor stores. We're not a chain — we're a family operation that's been stocking shelves and remembering regulars for more than ten years.</p>
+    </div>
+  </div>
+
+  <section class="about-intro">
+    <div class="wrap about-grid">
+      <div>
+        <span class="eyebrow">Our story</span>
+        <h2 style="margin: 16px 0 28px;">It started with one store, one family, and a lot of shelves to fill.</h2>
+        <p>We opened our doors in 2014 with a simple idea: a neighborhood liquor store should feel like one. Not fluorescent, not anonymous, not someone trying to sell you the most expensive thing on the wall.</p>
+        <p>Ten-plus years later, we run two stores in North Texas. The names on the signs are different, but the approach is the same: helpful staff, honest recommendations, and a deep bench of bottles — from the $12 Tuesday red to the limited-run bourbon you've been trying to track down.</p>
+        <p>We're proud of what we've built. More than that, we're grateful to the regulars who built it with us.</p>
+      </div>
+      <div class="about-feature" style="background-image: url('assets/photos/aisle-whiskey.jpg');"></div>
+    </div>
+  </section>
+
+  <section class="values">
+    <div class="wrap">
+      <span class="eyebrow">How we run things</span>
+      <h2 style="max-width:20ch; margin-top:16px;">Three things we've stuck to for ten years.</h2>
+      <div class="values-grid">
+        <div class="value"><div class="n">01</div><h3>Know the shelf</h3><p>Our staff actually tastes what we sell. If we recommend it, there's a reason. If we don't, we'll say so.</p></div>
+        <div class="value"><div class="n">02</div><h3>Stock what locals ask for</h3><p>Our shelves reflect our neighborhood. Special request? Tell us — there's a good chance we can get it in by next week.</p></div>
+        <div class="value"><div class="n">03</div><h3>Never push the price</h3><p>We'd rather steer you toward the $22 bottle you'll love than the $85 bottle you won't. That's how you end up with regulars.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-block">
+    <div class="wrap">
+      <div style="text-align:center; margin-bottom: 60px;">
+        <span class="eyebrow" style="justify-content:center;">Get in touch</span>
+        <h2 style="margin-top:16px;">Give us a ring or <em style="font-style:italic;color:var(--accent);">stop on in.</em></h2>
+        <p class="lead" style="margin: 16px auto 0;">We don't take online orders — but we answer the phone, and we'll hold a bottle for you if you ask.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3>Chaparral Liquor Store</h3>
+          <div class="place">Store 01 · Aubrey, Texas</div>
+          <a href="tel:19403659938" class="phone">(940) 365-9938</a>
+          <address>708 US-377<br>Aubrey, TX 76227<br><br>Mon – Sat · 10:00 am – 9:00 pm<br>Sunday · Closed</address>
+        </div>
+        <div class="contact-card">
+          <h3>Stir-Ups Liquors</h3>
+          <div class="place">Store 02 · Bartonville, Texas</div>
+          <a href="tel:19405840380" class="phone">(940) 584-0380</a>
+          <address>1842 FM 407<br>Bartonville, TX 76226<br><br>Mon – Sat · 10:00 am – 9:00 pm<br>Sunday · Closed</address>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+
+
+<section class="page" data-route="/stirups">
+  <div class="page-head">
+    <div class="wrap">
+      <span class="eyebrow">Store 02 · Bartonville, TX</span>
+      <h1>Stir-Ups <em style="font-style:italic;color:var(--accent);">Liquors</em></h1>
+      <p class="lead">Our Bartonville shop on FM 407 — a full-selection liquor store with the same family-run feel as Chaparral, just a short drive south.</p>
+    </div>
+  </div>
+
+  <div class="wrap" style="padding: 80px 0;">
+    <div class="store-row" style="border: none; padding: 0;">
+      <div class="photos">
+        <div class="p1" style="background-image: url('assets/photos/aisle-spirits.jpg');"></div>
+        <div class="p2" style="background-image: url('assets/photos/aisle-vodka.jpg');"></div>
+        <div class="p3" style="background-image: url('assets/photos/interior-wide.jpg');"></div>
+      </div>
+      <div class="info">
+        <div class="rating"><b>Bartonville, TX</b> · On FM 407</div>
+        <p class="blurb">Stir-Ups is the newer of our two stores but carries the same philosophy: helpful staff, honest recommendations, deep shelves. Stop by on your way through Bartonville or make us the destination — either way, we'll pour you in the right direction.</p>
+
+        <div class="facts">
+          <div class="fact"><div class="k">Address</div><div class="v">1842 FM 407<br>Bartonville, TX 76226</div></div>
+          <div class="fact"><div class="k">Phone</div><div class="v"><a href="tel:19405840380">(940) 584-0380</a></div></div>
+          <div class="fact"><div class="k">Located on</div><div class="v">FM 407, Bartonville</div></div>
+          <div class="fact"><div class="k">Category</div><div class="v">Small business · Liquor store</div></div>
+        </div>
+
+        <h3 style="margin-bottom: 16px;">Hours</h3>
+        <div class="hours-table" style="margin-bottom: 32px;">
+          <span class="d">Monday</span><span>10:00 am – 9:00 pm</span>
+          <span class="d">Tuesday</span><span>10:00 am – 9:00 pm</span>
+          <span class="d">Wednesday</span><span>10:00 am – 9:00 pm</span>
+          <span class="d">Thursday</span><span>10:00 am – 9:00 pm</span>
+          <span class="d">Friday</span><span>10:00 am – 9:00 pm</span>
+          <span class="d">Saturday</span><span>10:00 am – 9:00 pm</span>
+          <span class="d">Sunday</span><span>Closed</span>
+        </div>
+
+        <div class="row-ctas">
+          <a href="tel:19405840380" class="btn btn-primary btn-arrow">Call the store</a>
+          <a href="https://maps.google.com/?q=1842+FM+407+Bartonville+TX+76226" target="_blank" rel="noopener" class="btn btn-ghost">Get directions</a>
+          <a href="https://www.google.com/search?q=Stir-Ups+Liquors+Bartonville+TX" target="_blank" rel="noopener" class="btn btn-ghost">Find on Google</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="rule">Specialties</div>
+
+    <div class="cat-grid" style="margin-top: 40px;">
+      <div class="cat"><div class="num">01</div><h3>Wine</h3><p class="desc">Reds, whites, and bottles for every dinner table in Bartonville.</p></div>
+      <div class="cat"><div class="num">02</div><h3>Craft &amp; Macro Beer</h3><p class="desc">Local rotations plus the everyday cold case.</p></div>
+      <div class="cat"><div class="num">03</div><h3>Whiskey &amp; Bourbon</h3><p class="desc">From the Tuesday pour to the special-occasion bottle.</p></div>
+      <div class="cat"><div class="num">04</div><h3>Tequila · Gin · Vodka</h3><p class="desc">A full spirits wall, stocked deep and turned over often.</p></div>
+    </div>
+  </div>
+
+  <section class="map-strip">
+    <div class="wrap">
+      <div class="map-grid" style="grid-template-columns: 1fr;">
+        <div class="map-tile" style="aspect-ratio: 21/9;">
+          <iframe loading="lazy" allowfullscreen
+            src="https://maps.google.com/maps?q=1842%20FM%20407%20Bartonville%20TX%2076226&t=m&z=15&output=embed"></iframe>
+          <div class="label">
+            <h4>Stir-Ups Liquors</h4>
+            <span>1842 FM 407 · Bartonville, TX 76226</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-col">
+        <div class="foot-brand">Sonufive LLC</div>
+        <div class="foot-brand-sub">Family of liquor stores · Est. 2014</div>
+        <p>Two neighborhood spirits shops in North Texas. Helpful staff, deep shelves, honest recommendations.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Explore</h4>
+        <a href="#/">Home</a>
+        <a href="#/stores">Our Stores</a>
+        <a href="#/chaparral">Chaparral</a>
+        <a href="#/stirups">Stir-Ups</a>
+        <a href="#/about">About &amp; Contact</a>
+      </div>
+      <div class="foot-col">
+        <h4>Chaparral</h4>
+        <a href="tel:19403659938">(940) 365-9938</a>
+        <p>708 US-377<br>Aubrey, TX 76227</p>
+        <br>
+        <h4 style="margin-top:8px;">Stir-Ups</h4>
+        <a href="tel:19405840380">(940) 584-0380</a>
+        <p>1842 FM 407<br>Bartonville, TX 76226</p>
+      </div>
+      <div class="foot-col">
+        <h4>Please drink</h4>
+        <p>Responsibly. Don't share with minors. If you can't drive, don't. We'll be here tomorrow.</p>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <span>© 2026 Sonufive LLC · All rights reserved</span>
+      <span>Must be 21+ to purchase alcohol · Tex. Alco. Bev. Code</span>
+    </div>
+  </div>
+</footer>
+
+<div id="tweaks">
+  <div class="head">
+    <span>Tweaks</span>
+    <span id="tweaksClose" style="cursor:pointer; color: var(--paper-dim);">✕</span>
+  </div>
+  <div class="body">
+    <label>Accent color (amber)<input type="color" id="tw-accent" /></label>
+    <label>Crimson accent<input type="color" id="tw-crimson" /></label>
+    <label>Background shade<input type="color" id="tw-bg" /></label>
+    <label>Display font
+      <select id="tw-font">
+        <option>Cormorant Garamond</option>
+        <option>Playfair Display</option>
+        <option>EB Garamond</option>
+        <option>DM Serif Display</option>
+      </select>
+    </label>
+    <div class="row">
+      <span>Show age gate</span>
+      <label style="margin:0;"><input type="checkbox" id="tw-agegate" /></label>
+    </div>
+  </div>
+</div>
+
+<script>
+  const pages = document.querySelectorAll('.page');
+  const navLinks = document.querySelectorAll('nav.primary a');
+  function route() {
+    const hash = location.hash.replace(/^#/, '') || '/';
+    let found = false;
+    pages.forEach(p => {
+      const r = p.dataset.route;
+      const active = r === hash;
+      p.classList.toggle('active', active);
+      if (active) found = true;
+    });
+    if (!found) { document.querySelector('.page[data-route="/"]').classList.add('active'); }
+    navLinks.forEach(l => l.classList.toggle('active', l.dataset.route === hash));
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    document.getElementById('nav').classList.remove('open');
+  }
+  window.addEventListener('hashchange', route);
+  route();
+
+  document.getElementById('navToggle').addEventListener('click', () => {
+    document.getElementById('nav').classList.toggle('open');
+  });
+
+  const ageGate = document.getElementById('ageGate');
+  function showAgeGate() {
+    if (!TWEAK_DEFAULTS.showAgeGate) { ageGate.classList.add('hide'); return; }
+    if (sessionStorage.getItem('sonufive-age-ok') === '1') { ageGate.classList.add('hide'); }
+    else { ageGate.classList.remove('hide'); }
+  }
+  document.getElementById('ageYes').addEventListener('click', () => {
+    sessionStorage.setItem('sonufive-age-ok', '1');
+    ageGate.classList.add('hide');
+  });
+  document.getElementById('ageNo').addEventListener('click', () => {
+    ageGate.innerHTML = '<div class="age-card"><div class="brand-mark">S5</div><h2>Come back soon.</h2><p>You must be 21 or older to enter. Thanks for stopping by — we\'ll be here when the time is right.</p></div>';
+  });
+  showAgeGate();
+
+  const tweaks = document.getElementById('tweaks');
+  const root = document.documentElement;
+  function applyTweaks(t) {
+    root.style.setProperty('--accent', t.accent);
+    root.style.setProperty('--crimson', t.crimson);
+    root.style.setProperty('--bg', t.bgShade);
+    root.style.setProperty('--display', "'" + t.displayFont + "', Georgia, serif");
+  }
+  applyTweaks(TWEAK_DEFAULTS);
+
+  document.getElementById('tw-accent').value = TWEAK_DEFAULTS.accent;
+  document.getElementById('tw-crimson').value = TWEAK_DEFAULTS.crimson;
+  document.getElementById('tw-bg').value = TWEAK_DEFAULTS.bgShade;
+  document.getElementById('tw-font').value = TWEAK_DEFAULTS.displayFont;
+  document.getElementById('tw-agegate').checked = TWEAK_DEFAULTS.showAgeGate;
+
+  function postEdit(edits) {
+    Object.assign(TWEAK_DEFAULTS, edits);
+    applyTweaks(TWEAK_DEFAULTS);
+    try { window.parent.postMessage({ type: '__edit_mode_set_keys', edits }, '*'); } catch (e) {}
+  }
+  document.getElementById('tw-accent').addEventListener('input', e => postEdit({ accent: e.target.value }));
+  document.getElementById('tw-crimson').addEventListener('input', e => postEdit({ crimson: e.target.value }));
+  document.getElementById('tw-bg').addEventListener('input', e => postEdit({ bgShade: e.target.value }));
+  document.getElementById('tw-font').addEventListener('change', e => postEdit({ displayFont: e.target.value }));
+  document.getElementById('tw-agegate').addEventListener('change', e => {
+    postEdit({ showAgeGate: e.target.checked });
+    if (e.target.checked) { sessionStorage.removeItem('sonufive-age-ok'); showAgeGate(); }
+    else { ageGate.classList.add('hide'); }
+  });
+
+  window.addEventListener('message', (ev) => {
+    const d = ev.data || {};
+    if (d.type === '__activate_edit_mode') tweaks.classList.add('visible');
+    if (d.type === '__deactivate_edit_mode') tweaks.classList.remove('visible');
+  });
+  document.getElementById('tweaksClose').addEventListener('click', () => tweaks.classList.remove('visible'));
+  try { window.parent.postMessage({ type: '__edit_mode_available' }, '*'); } catch (e) {}
+</script>
+
+</body>
+</html>
